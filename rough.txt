@@ -1,0 +1,74 @@
+"Push your limits, break your boundaries, and become a Gymster."
+"Transform your body, empower your mind, achieve your goals - Welcome to GYMSTER."
+https://youtube.com/watch?v=EYpdEYK25Dc&si=EnSIkaIECMiOmarE     For form velidation
+<a href='tel:8930300480'>1-877-538-5888</a>
+
+
+
+
+
+
+
+
+import LoadingBar from 'react-top-loading-bar'
+
+
+  const [progress, setProgress] = useState(0)
+
+
+   <LoadingBar
+        color='red'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
+
+
+
+
+
+
+
+
+
+
+  import { ToastContainer, toast } from 'react-toastify';
+
+  import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+
+
+<ToastContainer
+position="top-right"
+autoClose={2000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss={false}
+draggable
+pauseOnHover={false}
+theme="dark"
+/>
+
+
+
+
+
+
+
+
+
+toast.success('🦄 Wow so easy!', {
+position: "top-right",
+autoClose: 2000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: false,
+draggable: true,
+progress: undefined,
+theme: "dark",
+});
+

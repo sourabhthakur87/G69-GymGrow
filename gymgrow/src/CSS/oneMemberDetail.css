@@ -1,0 +1,221 @@
+.onememberdetail {
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+.onememberdetail .username {
+  text-transform: uppercase;
+  width: 60%;
+  border-radius: 10px;
+  background-color: rgb(185, 181, 176);
+  margin: auto;
+  height: 50px;
+  line-height: 50px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-bottom: 50px;
+}
+
+.onememberdetail .action_card {
+  display: flex;
+  justify-content: space-evenly;
+  /* border: 2px solid red; */
+}
+
+.onememberdetail .card {
+  width: 50%;
+  max-height: fit-content;
+  /* border: 3px solid green; */
+  background-color: lightblue;
+  border-radius: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.onememberdetail .card .dite {
+  width: 100%;
+  min-height: 10.5rem;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+  background-color: lightcyan;
+  border-radius: 10px;
+  text-align: left;
+  padding: 8px 10px;
+}
+
+.onememberdetail .card .dite::-webkit-scrollbar {
+  display: none;
+}
+
+.onememberdetail .card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.onememberdetail .action {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.onememberdetail .action>p {
+  width: 75%;
+  height: 40px;
+  border-radius: 8px;
+  padding-left: 10px;
+  cursor: pointer;
+  margin: 10px 0px;
+  font-weight: bold;
+}
+
+.onememberdetail .action a {
+  width: 75%;
+  height: 40px;
+  border-radius: 8px;
+  padding-left: 10px;
+  cursor: pointer;
+  margin: 10px 0px;
+  font-weight: bold;
+  line-height: 40px;
+  text-decoration: none;
+  color: white;
+  background-color: lightcoral;
+}
+
+
+.onememberdetail .action .Memberactionactive {
+  background-color: purple;
+  color: white;
+
+
+}
+
+.onememberdetail .action>p span {
+  line-height: 40px;
+}
+
+.onememberdetail .all_form {
+  width: 50%;
+  background-color: #8b97c3;
+  border-radius: 5px;
+}
+
+.onememberdetail .all_form>h2 {
+  text-align: center;
+}
+
+.onememberdetail .all_form form textarea {
+  width: 100%;
+}
+
+.onememberdetail .lable {
+  width: 80%;
+}
+
+.onememberdetail .inputIcon {
+  margin-right: 8px;
+}
+
+.onememberdetail .all_form form .lable .icon {
+  width: 100%;
+  height: 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 3px;
+}
+
+.onememberdetail label {
+  margin: 0px 10px;
+}
+
+.onememberdetail .all_form form .lable .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.all_form form .icon,
+.all_form form .lable .icon select {
+  background-color: lightgray;
+  padding-left: 5px;
+}
+
+.all_form form .icon input,
+.all_form form .icon select {
+  width: 94%;
+  border: none;
+  background: none;
+  height: 95%;
+}
+
+.all_form form button {
+  background-color: rgb(72, 78, 85);
+  color: white;
+  font-size: 18px;
+  width: 50%;
+  height: 30px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.all_form form button:hover {
+  background-color: rgb(56, 59, 63);
+}
+
+.all_form form textarea {
+  width: 93%;
+  padding: 5px;
+  background: lightgray;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .onememberdetail {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .onememberdetail .username {
+    width: 100%;
+    /* position: fixed; */
+    position: relative;
+    border-radius: 0;
+    /* margin: 0; */
+    padding: 0;
+  }
+
+  .onememberdetail .action_card {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .onememberdetail .action_card .card {
+    width: 90%;
+
+  }
+
+  .onememberdetail .action {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .onememberdetail .all_form {
+    width: 100%;
+    height: fit-content;
+  }
+}

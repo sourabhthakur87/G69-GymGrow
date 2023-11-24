@@ -1,0 +1,158 @@
+/* Google Fonts - Poppins */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  /* background: #f9e0e0; */
+  background: #3d5a80;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+nav .innerlogo {
+  margin-right: 90px;
+}
+
+.logo .menu-icon {
+  color: #333;
+  font-size: 30px;
+  margin-right: 14px;
+  cursor: pointer;
+  margin-left: 30px;
+  color: white;
+}
+
+.logo .menu-icon:hover {
+  transform: scale(1.1);
+}
+
+.logo .logo-name {
+  /* color: #333; */
+  color: white;
+  font-size: 18px;
+  font-weight: bolder;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 260px;
+  padding: 20px 0;
+  /* background-color: #fff; */
+  /* background-color: #f9e0e0; */
+  background-color: #1076f0;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+nav.open .sidebar {
+  left: 0;
+}
+
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 30px 16px;
+}
+
+.sidebar-content .list {
+  list-style: none;
+  background: #1076f0;
+  border-radius: 10px;
+}
+
+.list .nav-link {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.list .nav-link span {
+  color: white;
+}
+
+.lists .nav-link:hover {
+  background: #3d5a80;
+}
+
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.nav-link .link {
+  font-size: 16px;
+  color: #707070;
+  font-weight: 400;
+}
+
+.lists .nav-link:hover .icon,
+.lists .nav-link:hover .link {
+  color: #fff;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+nav.open~.overlay {
+  opacity: 1;
+  left: 260px;
+  pointer-events: auto;
+}
+
+/*---------------------- For navbar 3------------------------- */
+nav .logo-margin {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+nav #logoutmember {
+  display: flex;
+  padding: 6px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    width: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+  }
+}

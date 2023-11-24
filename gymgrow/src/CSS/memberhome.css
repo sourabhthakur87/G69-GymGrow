@@ -1,0 +1,56 @@
+.memberHome {
+    width: 100%;
+}
+
+.memberHome .dashboard {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.memberHome .dashboard .member-home-right {
+    width: 47%;
+}
+
+.memberHome .dashboard .member-home-left {
+    width: 47%;
+}
+
+
+.memberHome .atten {
+    display: flex;
+    width: 95%;
+    margin: auto;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding: 0px 10px;
+    align-items: center;
+}
+
+.memberHome .atten button{
+    width: 100px;
+    height: 40px;
+    margin: 10px 0px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: lightcoral;
+    color: white;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .memberHome .dashboard {
+        flex-direction: column;
+    }
+
+    .memberHome .dashboard .member-home-right,
+    .memberHome .dashboard .member-home-left {
+        width: 100%;
+    }
+
+    .memberHome .dashboard .member-home-right {
+        margin-top: 20px;
+    }
+
+}

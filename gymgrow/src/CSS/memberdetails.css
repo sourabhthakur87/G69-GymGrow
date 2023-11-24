@@ -1,0 +1,238 @@
+.memberDetails {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.memberDetails .search {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.memberDetails .search select {
+    width: 20%;
+    height: 30px;
+    background: lightcoral;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
+.memberDetails .search .input {
+    width: 20%;
+    height: 30px;
+    border: 2px solid pink;
+    display: flex;
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+
+.memberDetails .search a {
+    width: 5%;
+    padding: 5px 10px;
+    text-decoration: none;
+    background: lightcoral;
+    color: white;
+    font-size: large;
+    border-radius: 10px;
+    line-height: 27px;
+}
+
+.memberDetails .search .input label {
+    line-height: 30px;
+}
+
+.memberDetails .search .input label #searchIcon {
+    font-size: 18px;
+}
+
+.memberDetails .search .input input {
+    border: none;
+    width: 90%;
+    height: 92%;
+    outline: none;
+    background: none;
+}
+
+.memberDetails .grid {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+    font-family: cursive;
+
+}
+
+.memberDetails .grid select {
+    width: 10%;
+    height: 30px;
+    margin: 10px 20px;
+    border: none;
+    background: purple;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.memberDetails .grid>p {
+    font-weight: bolder;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 95%;
+    overflow-x: scroll;
+}
+
+table th {
+    background-color: #fad3d3;
+}
+
+
+table th,
+table td {
+    padding: 7px 10px;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+table button {
+    width: 80%;
+    height: 35px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.onememberdetail table tr {
+    border: 1px solid #ddd;
+}
+
+table #alldetaillink>h4 {
+    width: 100%;
+    height: 40px;
+    background-color: purple;
+    border-radius: 10px;
+    padding: 2px;
+    line-height: 35px;
+}
+
+table td a {
+    color: white;
+    text-decoration: none;
+}
+
+.model-width {
+    width: 30%;
+}
+
+.model-label {
+    width: 90%;
+}
+
+@media screen and (max-width: 600px) {
+    .memberDetails .search {
+        left: 0;
+    }
+
+    table span {
+        padding: 5px 20px;
+    }
+
+    .memberDetails .search .input {
+        width: 30%;
+    }
+
+    .memberDetails .search select {
+        width: 30%;
+    }
+
+    .memberDetails .search a {
+        width: fit-content;
+    }
+
+    .memberDetails .grid select {
+        width: 40%;
+    }
+
+    .table {
+        width: 100%;
+        display: block;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table button {
+        width: 100%;
+        height: 40px;
+    }
+
+
+    .model-width {
+        height: fit-content;
+        width: 80%;
+    }
+
+    .model-label {
+        width: 90%;
+    }
+
+
+}
+
+.model_wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.model_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -50%);
+    width: 90%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.model_container .buttons button {
+    width: 8rem;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 7px;
+}

@@ -1,0 +1,70 @@
+/* styles.css */
+
+.filter-label {
+    font-weight: bold;
+}
+
+.filter-dropdown {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* .search-label {
+    font-weight: bold;
+    margin-top: 10px; 
+  } */
+
+.search-input {
+    padding: 5px;
+    /* width: 100%; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+
+.disabled-element {
+    color: #999;
+    /* Change the text color for disabled elements */
+    background-color: #eee;
+    /* Change the background color for disabled elements */
+    cursor: not-allowed;
+    /* Change the cursor to indicate it's not clickable */
+}
+
+.red-button {
+    background-color: red;
+    /* Set the background color to red */
+    color: white;
+    /* Set the text color to white */
+    /* cursor: not-allowed;  */
+}
+
+.green-button {
+    background-color: green;
+    color: white;
+}
+
+.present {
+    background-color: lightgreen;
+    color: black;
+}
+
+.absent {
+    background-color: lightcoral;
+}
+
+.tools {
+    width: 100%;
+    display: flex;
+}
+
+.Attenance {
+    width: 100%;
+}
+
+.Attenance h1 {
+    margin: 20px;
+}

@@ -1,0 +1,45 @@
+.alert-main{
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+.alert {
+    width: 30%;
+    display: flex;
+    border-radius: 5px;
+    background: white;
+}
+
+.alert-main .alert .icon{
+    width: 13%;
+    height: 100%;
+    /* background-color: green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    font-size: 27px;
+    color: white;
+}
+.alert-main .alert .message{
+    margin-left: 9px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+
+.error {
+    background-color: rgb(226, 58, 58);
+}
+
+.success {
+    background-color: rgb(140, 209, 140);
+}
+
+.warn {
+    background-color: rgb(177, 155, 114);
+}
