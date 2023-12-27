@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import * as Icon from "react-bootstrap-icons"
+import { useNavigate } from 'react-router-dom'
 export default function NavBar2(props) {
+    const navigate  = useNavigate()
     const [isopen, setisOpen] = useState(false)
     const toggle = () => {
         setisOpen((e) => !e)
@@ -11,7 +13,7 @@ export default function NavBar2(props) {
             <nav className={isopen ? "open" : ""}>
                 <div className="logo">
                     <Icon.List className="menu-icon" onClick={toggle} />
-                    <span className="logo-name">{props.gymname}</span>
+                    <span className="logo-name" style={{cursor:"pointer"}} onClick={()=>navigate("/ownerhome")}>{props.gymname}</span>
                 </div>
                 <div className="sidebar">
                     <div className="logo">

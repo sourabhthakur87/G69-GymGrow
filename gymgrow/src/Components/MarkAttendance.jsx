@@ -6,6 +6,7 @@ import "../CSS/MarkAttendance.css"
 export default function MarkAttendance() {
     const navigate = useNavigate();
     const [studentDisplayData, setStudentDisplayData] = useState([]);
+    const [gymname,setgymname] = useState('')
     const [isChecked, setIsChecked] = useState([]);
     const [filter, setFilter] = useState('all');
     const [isRun, setisRun] = useState(false);
@@ -68,6 +69,7 @@ export default function MarkAttendance() {
             });
             const data = await res.json();
             setStudentDisplayData(data.newmembers);
+            setgymname(data.gymname)
             setIsChecked(new Array(data.newmembers.length).fill(false));
         } catch (error) {
             console.log(error);
@@ -149,7 +151,7 @@ export default function MarkAttendance() {
 
     return (
         <>
-            <NavBar2 gymname={"The PowerHouse Gym"} />
+            <NavBar2 gymname={gymname} />
             <h1>Mark Attendance</h1>
             <div className="container">
                 <div>
@@ -222,3 +224,214 @@ export default function MarkAttendance() {
         </>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { NavLink, useNavigate } from 'react-router-dom';
+// import NavBar2 from './NavBar2';
+// import "../CSS/MarkAttendance.css";
+
+// export default function MarkAttendance() {
+//     const navigate = useNavigate();
+//     const [studentDisplayData, setStudentDisplayData] = useState([]);
+//     const [filter, setFilter] = useState('all');
+//     const [searchQuery, setSearchQuery] = useState('');
+//     const [searchResults, setSearchResults] = useState([]);
+
+//     const isAttendanceMarkedForToday = (student) => {
+//         const currentDate = new Date().toISOString().split('T')[0];
+//         return student.attendance.some(entry => new Date(entry.date).toISOString().split('T')[0] === currentDate && entry.isPresent);
+//     }
+
+//     const markAttendance = async (index, studentId, isChecked) => {
+//         const currentDate = new Date().toISOString();
+//         console.log("Mark Attendance is run");
+//         const attendanceData = {
+//             studentId,
+//             isChecked,
+//             date: currentDate,
+//         };
+
+//         try {
+//             const res = await fetch("/markAttendance", {
+//                 method: "POST",
+//                 headers: {
+//                     "Content-Type": "application/json"
+//                 },
+//                 body: JSON.stringify(attendanceData)
+//             });
+
+//             console.log(res);
+
+//             if (res.status === 200) {
+//                 console.log(`Attendance marked for student with ID ${studentId}`);
+//                 console.log("Updated");
+//                 getUserData(); // Refresh data after marking attendance
+//             } else {
+//                 console.error(`Error marking attendance for student with ID ${studentId}`);
+//             }
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     }
+
+//     const checkDateChange = () => {
+//         const currentDate = new Date().toISOString().split('T')[0];
+//         console.log("Change Date is running");
+//         if (currentDate !== localStorage.getItem('lastDate')) {
+//             console.log("If condition of Change Date is running");
+//             localStorage.setItem('lastDate', currentDate);
+//             getUserData(); // Trigger refresh
+//         }
+//     };
+
+//     useEffect(() => {
+//         const intervalId = setInterval(checkDateChange, 10000);
+
+//         return () => clearInterval(intervalId);
+// // eslint-disable-next-line
+//     }, [studentDisplayData]);
+
+//     const getUserData = async () => {
+//         try {
+//             const res = await fetch("/memberdetails", {
+//                 method: "GET",
+//                 headers: {
+//                     "Content-Type": "application/json"
+//                 }
+//             });
+//             const data = await res.json();
+//             setStudentDisplayData(data.newmembers);
+//         } catch (error) {
+//             console.log(error);
+//             navigate("/");
+//         }
+//     };
+
+//     const handleSearch = (query) => {
+//         setSearchQuery(query);
+
+//         const filteredResults = studentDisplayData.filter((student) => {
+//             return (
+//                 student.userName.toLowerCase().includes(query.toLowerCase()) ||
+//                 student.phone.toString().includes(query)
+//             );
+//         })
+//         setSearchResults(filteredResults);
+//     }
+
+//     const filteredStudents = searchQuery
+//         ? searchResults
+//         : studentDisplayData.filter((student) => {
+//             if (filter === 'all') {
+//                 return true;
+//             } else if (filter === 'present') {
+//                 return isAttendanceMarkedForToday(student);
+//             } else if (filter === 'notPresent') {
+//                 return !isAttendanceMarkedForToday(student);
+//             }
+//             return true;
+//         });
+
+//     return (
+//         <>
+//             <NavBar2 gymname={"The PowerHouse Gym"} />
+//             <h1>Mark Attendance</h1>
+//             <div className="container">
+//                 <div>
+//                     <label className="filter-label">Filter Students:</label>
+//                     <select
+//                         className="filter-dropdown"
+//                         onChange={(e) => setFilter(e.target.value)}
+//                         value={filter}
+//                     >
+//                         <option value="all">All Students</option>
+//                         <option value="present">Present Students</option>
+//                         <option value="notPresent">Not Present Students</option>
+//                     </select>
+//                 </div>
+//                 <div>
+//                     <label className="search-label">Search Students:</label>
+//                     <input
+//                         className="search-input"
+//                         type="text"
+//                         placeholder="Search by name or phone"
+//                         value={searchQuery}
+//                         onChange={(e) => handleSearch(e.target.value)}
+//                     />
+//                 </div>
+//                 <table>
+//                     <thead>
+//                         <tr>
+//                             <th>.</th>
+//                             <th>Sr.no</th>
+//                             <th>Name</th>
+//                             <th>Phone</th>
+//                             <th>Address</th>
+//                             <th>Attendance</th>
+//                             <th>Check Attendance</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         {filteredStudents.map((curr, index) => (
+//                             <tr key={index}>
+//                                 <td>
+//                                     <input
+//                                         type="checkbox"
+//                                         name="present"
+//                                         onChange={() => markAttendance(index, curr._id, !isAttendanceMarkedForToday(curr))}
+//                                         disabled={isAttendanceMarkedForToday(curr)}
+//                                         className={isAttendanceMarkedForToday(curr) ? 'disabled-element' : ''}
+//                                         checked={isAttendanceMarkedForToday(curr)}
+//                                     />
+//                                 </td>
+//                                 <td>{index + 1}</td>
+//                                 <td>{curr.userName}</td>
+//                                 <td>{curr.phone}</td>
+//                                 <td>{curr.address}</td>
+//                                 <td>
+//                                     <button
+//                                         onClick={() => markAttendance(index, curr._id, true)}
+//                                         disabled={isAttendanceMarkedForToday(curr)}
+//                                         className={isAttendanceMarkedForToday(curr) ? 'disabled-element' : 'green-button'}
+//                                     >
+//                                         Proceed
+//                                     </button>
+//                                 </td>
+//                                 <td>
+//                                     <NavLink to={"/onestudentattendance/" + curr._id} style={{ color: "red" }} >Get Attendance</NavLink>
+//                                 </td>
+//                             </tr>
+//                         ))}
+//                     </tbody>
+//                 </table>
+//             </div>
+//         </>
+//     );
+// }

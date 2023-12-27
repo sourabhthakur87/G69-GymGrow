@@ -1,0 +1,92 @@
+.updateOwnerInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mainContent {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.personalInfo {
+    width: 40%;
+    height: 100%;
+    background: white;
+}
+
+.personalInfo form input {
+    width: 90%;
+    height: 40px;
+    border: none;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding-left: 4px;
+    margin: 5px 8px;
+}
+
+.personalInfo>h1 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.deleteME {
+    width: 10%;
+    height: 30px;
+    margin: auto;
+}
+
+
+.updateOwnerInfo .addgymdetail {
+    width: 45%;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+}
+
+.updateOwnerInfo .gym-detail-from {
+    background: white;
+    width: 100%;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+
+.EDITBTN {
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(72, 78, 85);
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: white;
+    font-weight: bolder;
+}
+
+
+@media screen and (max-width: 600px) {
+    .mainContent {
+        flex-direction: column;
+    }
+
+    .mainContent {
+        width: 100%;
+    }
+
+    .personalInfo {
+        width: 100%;
+        padding: 0px 10px;
+    }
+
+    .updateOwnerInfo .addgymdetail {
+        width: 100%;
+    }
+
+    .gym-detail-from textarea {
+        width: 100%;
+    }
+}

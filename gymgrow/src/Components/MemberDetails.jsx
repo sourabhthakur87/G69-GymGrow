@@ -227,7 +227,9 @@ export default function MemberDetails() {
                 progress={progress}
                 onLoaderFinished={() => setProgress(0)}
             />
-            <NavBar2 gymname={gymname.gymname} />
+
+            <NavBar2 gymname={gymname.gymname}/>
+
             {/* {showModel && <MyModel />} */}
             <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
                 <div className="model_wrapper"></div>

@@ -1,22 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar2 from './NavBar2'
 // import * as Icon from "react-bootstrap-icons"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../CSS/UpdateOwnerInfo.css"
 
 import { useNavigate } from 'react-router-dom';
 export default function UpdateOwnerInfo() {
     const navigate = useNavigate()
+
     const [updateOwner, setUpdateOwner] = useState({
         name: "", phone: "", gymname: ""
     })
+
     const ownerUpdate = (e) => {
         e.preventDefault();
         var name = e.target.name;
         var value = e.target.value;
         setUpdateOwner({ ...updateOwner, [name]: value });
-    }
+    };
 
+    const callOwnerInfo = async () => {
+        try {
+            const res = await fetch("/ownerhome", {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            const data = await res.json();
+            setUpdateOwner({
+                name: data.name,
+                phone: data.phone,
+                gymname: data.gymname
+            });
+            console.log(updateOwner);
+        } catch (error) {
+            console.log(error);
+            navigate("/");
+        }
+    };
+
+    useEffect(() => {
+        callOwnerInfo();
+        // eslint-disable-next-line
+    }, [])
 
     const sendUpdate = async (e) => {
         e.preventDefault()
@@ -86,7 +117,6 @@ export default function UpdateOwnerInfo() {
 
         setupdategymDetails({ ...updategymdetails, [name]: value })
     }
-
 
     const gymDetailsUpdatePost = async (e) => {
         e.preventDefault();
@@ -190,57 +220,65 @@ export default function UpdateOwnerInfo() {
 
     return (
         <>
-            <NavBar2 />
+            <NavBar2 gymname={updateOwner.gymname} />
             <div className="updateOwnerInfo">
-                <div className="personalInfo">
-                    <div className="all_form">
+                <div className="mainContent">
+                    <div className="personalInfo">
+
                         <h1>Update Me</h1>
                         <form method='PATCH'>
                             <div className="input-line">
-
-                                <label htmlFor="name">Name</label>
+                                <label htmlFor="name">Name:</label>
+                                <br />
                                 <input type="text" name='name' value={updateOwner.name} onChange={ownerUpdate} />
                             </div>
                             <div className="input-line">
-
-                                <label htmlFor="phone">Phone</label>
+                                <label htmlFor="phone">Phone:</label>
+                                <br />
                                 <input type="number" name='phone' value={updateOwner.phone} onChange={ownerUpdate} />
                             </div>
                             <div className="input-line">
-                                <label htmlFor="gymname">Gym</label>
+                                <label htmlFor="gymname">Gym:</label>
+                                <br />
                                 <input type="text" name='gymname' value={updateOwner.gymname} onChange={ownerUpdate} />
                             </div>
-                            <button type='submit' onClick={sendUpdate}>Update</button>
+                            <button className='EDITBTN' type='submit' onClick={sendUpdate}>Update</button>
                         </form>
                     </div>
-                </div>
-                <div className="gym-info">
-                    <div className="all_form">
-                        <h1>Gym Info</h1>
-                        <h2>Update Details</h2>
-                        <form method='PATCH'>
-                            <div className="time">
-                                <label htmlFor="">Morning Time</label>
-                                <input type="time" name="morningOpening" value={updategymdetails.morningOpening} onChange={handleupdateGymDetail} />
-                                <input type="time" name="morningClosing" value={updategymdetails.morningClosing} onChange={handleupdateGymDetail} />
-                            </div>
-                            <div className="time">
-                                <label htmlFor="">Evening Time</label>
-                                <input type="time" name="eveningOpening" value={updategymdetails.eveningOpening} onChange={handleupdateGymDetail} />
-                                <input type="time" name="eveningClosing" value={updategymdetails.eveningClosing} onChange={handleupdateGymDetail} />
-                            </div>
-                            <div className="time">
-                                <label htmlFor="">Gym Add.</label>
-                                <input type="text" name='gymAddress' placeholder='GYM Address' value={updategymdetails.gymAddress} onChange={handleupdateGymDetail} />
-                            </div>
-                            <textarea name="descreption" value={updategymdetails.descreption} onChange={handleupdateGymDetail} cols="5" rows="4" placeholder='Enter About Gym'></textarea>
-                            <button onClick={gymDetailsUpdatePost}>Add Details</button>
-                        </form>
+                    <div className="addgymdetail">
+                        <div className="gym-detail-from">
+                            <h2>Update Details</h2>
+                            <form method='PATCH'>
+                                <div className="time input-line">
+                                    <label htmlFor="">Morning Time</label>
+                                    <br />
+                                    <input type="time" name="morningOpening" value={updategymdetails.morningOpening} onChange={handleupdateGymDetail} />
+                                    <span>  TO  </span>
+                                    <input type="time" name="morningClosing" value={updategymdetails.morningClosing} onChange={handleupdateGymDetail} />
+                                </div>
+                                <div className="time input-line">
+                                    <label htmlFor="">Evening Time</label>
+                                    <br />
+                                    <input type="time" name="eveningOpening" value={updategymdetails.eveningOpening} onChange={handleupdateGymDetail} />
+                                    <span>  TO  </span>
+                                    <input type="time" name="eveningClosing" value={updategymdetails.eveningClosing} onChange={handleupdateGymDetail} />
+                                </div>
+                                <div className="time input-line">
+                                    <label htmlFor="">Gym Add.</label>
+                                    <br />
+                                    <input type="text" name='gymAddress' placeholder='GYM Address' value={updategymdetails.gymAddress} onChange={handleupdateGymDetail} />
+                                </div>
+                                <label htmlFor="">About Gym</label>
+                                <br />
+                                <textarea name="descreption" value={updategymdetails.descreption} onChange={handleupdateGymDetail} cols="65" placeholder='Enter About Gym'></textarea>
+                                <br />
+                                <button onClick={gymDetailsUpdatePost}>Add Details</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <button onClick={deleteAccount} >Delete ME</button>
+                <button className='EDITBTN deleteME' style={{ backgroundColor: "red" }} onClick={deleteAccount} >Delete ME</button>
             </div>
-
 
             <ToastContainer
                 position="top-right"
