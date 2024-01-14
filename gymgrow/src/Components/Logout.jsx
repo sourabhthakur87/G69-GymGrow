@@ -31,26 +31,6 @@ export default function Logout() {
     useEffect(() => {
         userlogout();
     })
-
-    // useEffect(() => {
-    //     fetch("/logout", {
-    //         method: "GET",
-    //         headers: {
-    //             Accept: "application/json",
-    //             "Contant-Type": "application/json",
-    //         },
-    //         credentials: "include"
-    //     }).then((res) => {
-    //         navigate("/", { replace: true });
-    //         if (res.status !== 200) {
-    //             const error = new Error(res.error);
-    //             throw error;
-    //         }
-
-    //     }).catch((e) => {
-    //         console.log(e);
-    //     })
-    // })
     return (
         <>
             <LoadingBar

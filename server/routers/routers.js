@@ -187,37 +187,7 @@ routers.post("/memberLogin", async (req, res) => {
     }
 })
 
-// routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
-//     try {
-//         const _id = req.params.id;
-//         const { registerdate, planeType, amount, feeDuration } = req.body
-//         if (!registerdate) {
-//             return res.status(422).json({ error: "Plz fill the form" })
-//         }
 
-//         // const newMember = await Owner.findOne({ _id: req.userID })
-//         Owner.findOne({ _id: req.userID }, (err, data) => {
-//             if (!err) {
-//                 var arr = data.newmembers;
-//                 arr.forEach(x => {
-//                     if (x._id == _id) {
-//                         x.amount.push(amount)
-//                         x.registerdate.push(registerdate)
-//                         x.planeType.push(planeType)
-//                         x.feeDuration.push(feeDuration)
-//                     }
-//                 });
-//                 data.markModified("newcostumer")
-//                 data.save((err) => {
-//                     if (!err) res.status(200).json({ message: "Update" });
-//                     else return res.status(404).json({ err: "Update not successful" })
-//                 });
-//             }
-//         });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 
 routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
     const { registerdate, feeDuration, planeType, amount, remark } = req.body;
@@ -336,37 +306,6 @@ routers.patch("/updategymDetails", OwnerAuth, async (req, res, next) => {
     } catch (error) {
         console.log(error);
     }
-    //    Member.find({ gymname: gymnam }, (err, data) => {
-    //         if (!err) {
-    //             data.forEach(x => {
-    //                 x.gymDetails.forEach(t => {
-    //                     t.morningOpening = morningOpening;
-    //                     t.morningClosing = morningClosing;
-    //                     t.eveningOpening = eveningOpening;
-    //                     t.eveningClosing = eveningClosing;
-    //                     t.gymAddress = gymAddress;
-    //                     t.descreption = descreption;
-    //                 })
-    //                 x.save();
-    //             })
-    //         }
-    //     })
-
-    //     Owner.findOne({ id }, (err, data) => {
-    //         if (!err) {
-    //             var arr = data.gymDetails[0];
-
-    //             arr.morningOpening = morningOpening;
-    //             arr.morningClosing = morningClosing;
-    //             arr.eveningOpening = eveningOpening;
-    //             arr.eveningClosing = eveningClosing;
-    //             arr.gymAddress = gymAddress;
-    //             arr.descreption = descreption;
-
-    //             // data.markModified("gymDetails")
-    //             data.save();
-    //         }
-    //     })
 
 })
 
@@ -423,42 +362,189 @@ routers.get("/onestudent/:id", OwnerAuth, (req, res) => {
 
 
 
-routers.post("/markAttendance", OwnerAuth, async (req, res) => {
+// routers.post("/markAttendance", OwnerAuth, async (req, res) => {
 
-    const { studentId, isChecked, date } = req.body
-    // console.log(`Attandence ${isChecked}, ID ${studentId} , Date ${date}`);
+//     const { studentId, isChecked, date } = req.body
+//     // console.log(`Attandence ${isChecked}, ID ${studentId} , Date ${date}`);
+
+//     if (!studentId) {
+//         return res.status(422).json({ error: "Fill All The Fields" });
+//     }
+
+//     try {
+//         const UserPresent = await Owner.findOne({ _id: req.userID });
+//         const memberPortal = await Member.findOne({ _id: studentId })
+//         // console.log(memberPortal);
+
+//         if (UserPresent) {
+//             const findStudent = UserPresent.newmembers.find((m) => m._id.toString() === studentId);
+//             findStudent.attendance.push({ date, isPresent: isChecked })
+//             const att = memberPortal.attendance.push({ date, isPresent: isChecked });
+//             UserPresent.markModified("students");
+//             await UserPresent.save();
+//             await memberPortal.save();
+//             res.status(200).json({ Success: true })
+
+//         } else {
+//             res.status(404).json({ error: "User not found" });
+//         }
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// })
+
+
+// --------------------------------------------------------------------- 
+
+// routers.post("/markAttendance", OwnerAuth, async (req, res) => {
+//     const { studentId, isChecked, date } = req.body;
+
+//     if (!studentId) {
+//         return res.status(422).json({ error: "Fill All The Fields" });
+//     }
+
+//     try {
+//         const owner = await Owner.findOne({ _id: req.userID });
+//         const member = await Member.findOne({ _id: studentId });
+
+//         if (owner && member) {
+
+//             const findStudent = owner.newmembers.find((m) => m._id.toString() === studentId);
+
+
+//             findStudent.attendance.push({ date, isPresent: isChecked });
+
+//             member.attendance.push({ date, isPresent: isChecked });
+
+//             owner.markModified("newmembers");
+
+//             // Use findOneAndUpdate to get the updated document
+//             const updatedOwner = await Owner.findOneAndUpdate(
+//                 { _id: req.userID },
+//                 { $set: { newmembers: owner.newmembers } },
+//                 { new: true }
+//             );
+
+//             // Use findOneAndUpdate to get the updated document
+//             const updatedMember = await Member.findOneAndUpdate(
+//                 { _id: studentId },
+//                 { $set: { attendance: member.attendance } },
+//                 { new: true }
+//             );
+
+//             res.status(200).json({ Success: true });
+//         } else {
+//             res.status(404).json({ error: "User or Member not found" });
+//         }
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// });
+
+
+routers.post("/markAttendance", OwnerAuth, async (req, res) => {
+    const { studentId, isChecked, date } = req.body;
 
     if (!studentId) {
         return res.status(422).json({ error: "Fill All The Fields" });
     }
 
     try {
-        const UserPresent = await Owner.findOne({ _id: req.userID });
-        const memberPortal = await Member.findOne({ _id: studentId })
-        // console.log(memberPortal);
+        const owner = await Owner.findOne({ _id: req.userID });
+        const member = await Member.findOne({ _id: studentId });
 
-        if (UserPresent) {
-            const findStudent = UserPresent.newmembers.find((m) => m._id.toString() === studentId);
-            findStudent.attendance.push({ date, isPresent: isChecked })
-            const att = memberPortal.attendance.push({ date, isPresent: isChecked });
-            UserPresent.markModified("students");
-            await UserPresent.save();
-            await memberPortal.save();
-            res.status(200).json({ Success: true })
+        if (owner && member) {
+            const filter = { _id: req.userID, 'newmembers._id': studentId };
+            member.attendance.push({ date, isPresent: isChecked })
+            const update = {
+                $push: {
+                    'newmembers.$.attendance': {
+                        date,
+                        isPresent: isChecked
+                    }
+                }
+            }
+            const options = {
+                new: true,
+                runValidators: true,
+            }
 
+            const updatememberattendance = await Owner.findOneAndUpdate(filter, update, options)
+            await member.save();
+            if (updatememberattendance) {
+                res.status(200).json({ Success: true });
+            } else {
+                res.status(404).json({ error: "Student not found" });
+            }
         } else {
-            res.status(404).json({ error: "User not found" });
+            res.status(404).json({ error: "User or Member not found" });
         }
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
     }
-})
+});
+
+
+
+// routers.post("/markAttendance", OwnerAuth, async (req, res) => {
+//     const { studentId, isChecked, date } = req.body;
+
+//     if (!studentId) {
+//         return res.status(422).json({ error: "Fill All The Fields" });
+//     }
+
+//     try {
+//         const owner = await Owner.findOne({ _id: req.userID });
+//         const member = await Member.findOne({ _id: studentId });
+
+//         if (owner && member) {
+//             // Find the index of the student in the owner's newmembers array
+//             const indexInOwner = owner.newmembers.findIndex((m) => m._id.toString() === studentId);
+
+//             if (indexInOwner !== -1) {
+//                 // Update the attendance for the found student in the owner's portal
+//                 owner.newmembers[indexInOwner].attendance.push({ date, isPresent: isChecked });
+//                 owner.markModified("newmembers");
+//             } else {
+//                 return res.status(404).json({ error: "Student not found in owner portal" });
+//             }
+
+//             // Use findOneAndUpdate to get the updated document for the owner
+//             const updatedOwner = await Owner.findOneAndUpdate(
+//                 { _id: req.userID },
+//                 { $set: { newmembers: owner.newmembers } },
+//                 { new: true }
+//             );
+
+//             // Update the attendance for the student in the member's portal
+//             member.attendance.push({ date, isPresent: isChecked });
+
+//             // Use findOneAndUpdate to get the updated document for the member
+//             const updatedMember = await Member.findOneAndUpdate(
+//                 { _id: studentId },
+//                 { $set: { attendance: member.attendance } },
+//                 { new: true }
+//             );
+
+//             res.status(200).json({ Success: true });
+//         } else {
+//             res.status(404).json({ error: "User or Member not found" });
+//         }
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// });
 
 
 
 
 // Logout ---------------------------------------------------------------------------------
+
+
 routers.get("/logoutuser", async (req, res) => {
     res.clearCookie("jwtoken", { path: "/" });
     // console.log("Logout");
