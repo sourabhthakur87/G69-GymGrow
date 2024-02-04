@@ -148,6 +148,7 @@ export default function MemberHome() {
 
                     const q = new Date();
                     let Remaining;
+                    let arr = [];
                     if (q.getTime() > registeration.getTime()) {
                       const diff = feeDuration.getTime() - q.getTime();
                       const one_day = 1000 * 3600 * 24;

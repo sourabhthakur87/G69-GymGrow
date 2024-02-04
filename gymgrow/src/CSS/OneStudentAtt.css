@@ -27,13 +27,13 @@ td {
     background-color: #f2f2f2;
 }
 
-.student-attendance-container>tr.present {
-    background-color: #c8e6c9;
+.student-attendance-container .present {
+    background-color: Green;
     /* Green for Present */
 }
 
-.student-attendance-container>tr.absent {
-    background-color: #ffcdd2;
+.student-attendance-container  .absent {
+    background-color: red;
     /* Red for Absent */
 }
 

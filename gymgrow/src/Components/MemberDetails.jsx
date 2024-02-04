@@ -279,6 +279,7 @@ export default function MemberDetails() {
                     </div>
                 </div>
             </div>
+            
             <div className="memberDetails" style={{marginBottom:"15px"}}> 
                 <div className="search">
                     <select value={showUpcoming} onChange={(e) => setShowUpcoming(e.target.value === 'true')}>

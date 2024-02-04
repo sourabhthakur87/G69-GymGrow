@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import NavBar2 from './NavBar2'
 import "../CSS/MarkAttendance.css"
+import * as Icon from 'react-bootstrap-icons';
+
 
 export default function MarkAttendance() {
     const navigate = useNavigate();
@@ -11,7 +13,8 @@ export default function MarkAttendance() {
     const [filter, setFilter] = useState('all');
     const [isRun, setisRun] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    // const [searchResults, setSearchResults] = useState([]);
+    // const [slic, setSlic] = useState(10)
 
     const isAttendancePresentMarkedForToday = (student) => {
         const currentDate = new Date().toISOString().split('T')[0];
@@ -54,7 +57,6 @@ export default function MarkAttendance() {
             isChecked: isCheckedForStudent,
             date: currentDate,
         };
-
         try {
             const res = await fetch("/markAttendance", {
                 method: "POST",
@@ -77,124 +79,166 @@ export default function MarkAttendance() {
             console.error(error);
         }
     };
-    const handleSearch = (query) => {
-        setSearchQuery(query);
+    // const handleSearch = (query) => {
+    //     setSearchQuery(query);
 
-        // Filter the results based on the search query
-        const filteredResults = studentDisplayData.filter((student) => {
-            return (
-                student.studentName.toLowerCase().includes(query.toLowerCase()) ||
-                student.phone.toString().includes(query)
-            );
-        })
-        setSearchResults(filteredResults);
-    }
+    //     // // Filter the results based on the search query
+    //     // const filteredResults = studentDisplayData.filter((student) => {
+    //     //     return (
+    //     //         student.studentName.toLowerCase().includes(query.toLowerCase()) ||
+    //     //         student.phone.toString().includes(query)
+    //     //     );
+    //     // })
+    //     // // setSearchResults(filteredResults);
+    // }
+
+    // const markAllAbsent = async () => {
+    //     if (window.confirm("Are You sure to Mark Absent") === true) {
+    //         const currentDate = new Date().toISOString();
+    //         studentDisplayData.forEach((student, index) => {
+    //             if (!isAttendancePresentMarkedForToday(student) && isChecked[index]) {
+    //                 markAttendance(index, student._id, false, currentDate);
+    //             }
+    //         });
+    //     }
+    // };
+
+    // const markPresent = async () => {
+    //     if (window.confirm("Are You sure to Mark Present") === true) {
+    //     const currentDate = new Date().toISOString();
+    //     studentDisplayData.forEach((student, index) => {
+    //         if (!isAttendancePresentMarkedForToday(student) && isChecked[index]) {
+    //             markAttendance(index, student._id, true, currentDate);
+    //         }
+    //     });
+    // }
+    // };
+
 
     const markAllAbsent = async () => {
-        const currentDate = new Date().toISOString();
-        studentDisplayData.forEach((student, index) => {
-            if (!isAttendancePresentMarkedForToday(student) && isChecked[index]) {
-                markAttendance(index, student._id, false, currentDate);
-            }
-        });
+        const selectedStudents = studentDisplayData
+            .filter((student, index) => !isAttendancePresentMarkedForToday(student) && isChecked[index])
+            .map((student) => student.userName);
+
+        if (window.confirm(`Are you sure to mark absent for the following students:\n${selectedStudents.join(', ')}`)) {
+            const currentDate = new Date().toISOString();
+            studentDisplayData.forEach((student, index) => {
+                if (!isAttendancePresentMarkedForToday(student) && isChecked[index]) {
+                    markAttendance(index, student._id, false, currentDate);
+                }
+            });
+        }
     };
 
     const markPresent = async () => {
-        const currentDate = new Date().toISOString();
-        studentDisplayData.forEach((student, index) => {
-            if (!isAttendancePresentMarkedForToday(student) && isChecked[index]) {
-                markAttendance(index, student._id, true, currentDate);
-            }
-        });
+        const selectedStudents = studentDisplayData
+            .filter((student, index) => !isAttendancePresentMarkedForToday(student) && isChecked[index])
+            .map((student) => student.userName);
+
+        if (window.confirm(`Are you sure to mark present for the following students:\n${selectedStudents.join(', ')}`)) {
+            const currentDate = new Date().toISOString();
+            studentDisplayData.forEach((student, index) => {
+                if (!isAttendancePresentMarkedForToday(student) && isChecked[index]) {
+                    markAttendance(index, student._id, true, currentDate);
+                }
+            });
+        }
     };
 
 
-    // Apply filter and search
-    const filteredStudents = searchQuery
-        ? searchResults
-        : studentDisplayData.filter((student, index) => {
+
+    const filteredStudents =
+        // searchQuery ? searchResults : 
+        studentDisplayData.filter((student, index) => {
             if (filter === 'all') {
                 return true;
             } else if (filter === 'present') {
                 return isAttendancePresentMarkedForToday(student);
             } else if (filter === 'absent') {
-                return (
-                    student.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent));
-            } else if (filter === 'notMarked') {
-                return !student.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0])
+                return (student.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent));
             }
+            // else if (filter === 'notMarked') {
+            //     return !student.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0])
+            // }
             return true;
         });
+
 
     return (
         <>
             <NavBar2 gymname={gymname} />
-            <h1>Mark Attendance</h1>
-            <div className="container">
-                <div>
-                    <label className="filter-label">Filter Students:</label>
-                    <select
-                        className="filter-dropdown"
-                        onChange={(e) => setFilter(e.target.value)}
-                        value={filter}
-                    >
-                        <option value="all">All Students</option>
+            <div className=" memberDetails container">
+                <div className='search'>
+                    {/* <label className="filter-label">Filter Students:</label> */}
+                    <select className="filter-dropdown" onChange={(e) => setFilter(e.target.value)} value={filter}>
+                        <option value="all">All Attendence</option>
                         <option value="present">Present Students</option>
                         <option value="absent">Absent Students</option>
-                        <option value="notMarked">Not Marked Students</option>
+                        {/* <option value="notMarked">Not Marked Students</option> */}
                     </select>
+                    <div className='input'>
+                        {/* <label className="search-label">Search Students:</label> */}
+                        <input className="search-input" type="text" placeholder="Search by name or phone" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />  <label><Icon.SearchHeartFill id='searchIcon' /></label>
+                    </div>
                 </div>
-                <div>
-                    <label className="search-label">Search Students:</label>
-                    <input
-                        className="search-input"
-                        type="text"
-                        placeholder="Search by name or phone"
-                        value={searchQuery}
-                        onChange={(e) => handleSearch(e.target.value)}
-                    />
+                <div className="grid">
+                    <h2>Member Attendance</h2>
+                    {/* <select defaultValue={'DEFAULT'} onChange={(e) => setSlic(e.target.value)}>
+                        <option value="10">Count 10</option>
+                        <option value="20">Count 20</option>
+                        <option value="30">Count 30</option>
+                        <option value={filteredStudents.length}>Max Count {filteredStudents.length}</option>
+                    </select> */}
+
+                    {/* <p>Total {membernumber}/{memberDetails.length}</p> */}
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>.</th>
-                            <th>Sr.no</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Attendance</th>
-                            <th>Check Attendance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredStudents.map((curr, index) => (
-                            <tr key={index}>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        name="present"
-                                        onChange={() => handleValue(index)}
-                                        checked={isChecked[index]}
-                                        disabled={isAttendancePresentMarkedForToday(curr) || curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent)}
-                                        className={isAttendancePresentMarkedForToday(curr) || curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent) ? 'disabled-element' : ''}
-                                    />
-                                </td>
-                                <td>{index + 1}</td>
-                                <td >{curr.userName}</td>
-                                <td>{curr.phone}</td>
-                                <td>{curr.address}</td>
-                                <td>
-                                    {curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent) ? "Absent" : isAttendancePresentMarkedForToday(curr) ? "Present" : "NAN"}
-                                </td>
-                                <td>
-                                    <NavLink to={"/onestudentattendance/" + curr._id} style={{ color: "red" }} >Get Attendance</NavLink>
-                                </td>
+                <div className="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">.</th>
+                                <th scope="col">Sr.no</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Attendance</th>
+                                <th scope="col">Check Attendance</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <button onClick={markAllAbsent}>Mark Absent</button>
-                <button style={{ margin: "0px 10px" }} onClick={markPresent}>Mark Present</button>
+                        </thead>
+
+                        <tbody>
+                            {filteredStudents.filter((val) => {
+                                if (searchQuery === "") {
+                                    return val;
+                                }
+                                else if (val.userName.toLowerCase().includes(searchQuery.toLocaleLowerCase()) || (val.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())) || (val.phone).toString().includes(searchQuery.toLocaleLowerCase())) {
+                                    return val;
+                                }
+                                return 0;
+                            }, []).map((curr, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        <input type="checkbox" name="present" onChange={() => handleValue(index)} checked={isChecked[index]} disabled={isAttendancePresentMarkedForToday(curr) || curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent)} className={isAttendancePresentMarkedForToday(curr) || curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent) ? 'disabled-element' : ''} />
+                                    </td>
+                                    <td data-label="Sno.">{index + 1}</td>
+                                    <td data-label="UserName">{curr.userName}</td>
+                                    <td data-label="Phone Number">{curr.phone}</td>
+                                    <td data-label="Address">{curr.address}</td>
+                                    <td data-label="Attendance">
+                                        {curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent) ? "Absent" : isAttendancePresentMarkedForToday(curr) ? "Present" : "NAN"}
+                                    </td>
+                                    <td data-label="Button">
+                                        <NavLink to={"/onestudentattendance/" + curr._id} style={{ color: "red" }} >Get Attendance</NavLink>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="btnAttendance">
+                    <button id='btn1' onClick={markAllAbsent}>Mark Absent</button>
+                    <button id='btn2' onClick={markPresent}>Mark Present</button>
+                </div>
             </div>
         </>
     );

@@ -1,70 +1,40 @@
-/* styles.css */
-
-.filter-label {
-    font-weight: bold;
+.btnAttendance {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.filter-dropdown {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.btnAttendance>button {
+    margin: 10px 20px 30px;
+    width: 12%;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+    border: none;
 }
 
-/* .search-label {
-    font-weight: bold;
-    margin-top: 10px; 
-  } */
-
-.search-input {
-    padding: 5px;
-    /* width: 100%; */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-
-
-
-.disabled-element {
-    color: #999;
-    /* Change the text color for disabled elements */
-    background-color: #eee;
-    /* Change the background color for disabled elements */
-    cursor: not-allowed;
-    /* Change the cursor to indicate it's not clickable */
-}
-
-.red-button {
+.btnAttendance #btn1 {
     background-color: red;
-    /* Set the background color to red */
     color: white;
-    /* Set the text color to white */
-    /* cursor: not-allowed;  */
 }
 
-.green-button {
+.btnAttendance #btn1:hover {
+    background-color: rgb(152, 50, 50);
+}
+
+.btnAttendance #btn2 {
     background-color: green;
     color: white;
 }
 
-.present {
-    background-color: lightgreen;
-    color: black;
+.btnAttendance #btn2:hover {
+    background-color: rgb(15, 91, 46);
 }
 
-.absent {
-    background-color: lightcoral;
-}
+@media only screen and (max-width: 600px) {
+    .btnAttendance > button {
 
-.tools {
-    width: 100%;
-    display: flex;
-}
-
-.Attenance {
-    width: 100%;
-}
-
-.Attenance h1 {
-    margin: 20px;
+        width: 30%;
+    }
 }
