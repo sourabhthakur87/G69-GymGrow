@@ -48,7 +48,7 @@ export default function MarkAttendance() {
         let updatedIsChecked = [...isChecked];
         updatedIsChecked[index] = !updatedIsChecked[index];
         setIsChecked(updatedIsChecked);
-        console.log(isChecked);
+        // console.log(isChecked);
     }
 
     const markAttendance = async (index, studentId, isCheckedForStudent, currentDate) => {
@@ -66,11 +66,11 @@ export default function MarkAttendance() {
                 body: JSON.stringify(attendanceData)
             });
 
-            console.log(res);
+            // console.log(res);
 
             if (res.status === 200) {
-                console.log(`Attendance marked for student with ID ${studentId}`);
-                console.log("Updated");
+                // console.log(`Attendance marked for student with ID ${studentId}`);
+                // console.log("Updated");
                 setisRun((e) => !e);
             } else {
                 console.error(`Error marking attendance for student with ID ${studentId}`);
@@ -225,7 +225,7 @@ export default function MarkAttendance() {
                                     <td data-label="Phone Number">{curr.phone}</td>
                                     <td data-label="Address">{curr.address}</td>
                                     <td data-label="Attendance">
-                                        {curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent) ? "Absent" : isAttendancePresentMarkedForToday(curr) ? "Present" : "NAN"}
+                                        {curr.attendance.some(entry => entry.date.split('T')[0] === new Date().toISOString().split('T')[0] && !entry.isPresent) ? "Absent" : isAttendancePresentMarkedForToday(curr) ? "Present" : "NA"}
                                     </td>
                                     <td data-label="Button">
                                         <NavLink to={"/onestudentattendance/" + curr._id} style={{ color: "red" }} >Get Attendance</NavLink>

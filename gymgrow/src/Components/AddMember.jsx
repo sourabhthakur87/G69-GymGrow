@@ -57,7 +57,7 @@ export default function AddMember() {
         let name = e.target.name;
         let value = (e.target.value).toLowerCase();
         setAddmember({ ...addmember, [name]: value})
-        console.log(addmember);
+        // console.log(addmember);
     }
 
     const handleDate = (e) => {

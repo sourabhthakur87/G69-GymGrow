@@ -227,7 +227,7 @@ routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
 
     const _id = req.params.id
     const { address, dite, phone } = req.body
-    console.log(address);
+    // console.log(address);
     try {
         if (!address) {
             return res.status(422).json({ error: "PLZ Fill all the fields" })
@@ -328,7 +328,7 @@ routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
     const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } = req.body;
 
     if (!morningOpening) {
-        console.log("PLZ fill the form");
+        // console.log("PLZ fill the form");
         return res.status(422).json({ error: "plz fill the form" })
     }
 

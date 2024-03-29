@@ -37,7 +37,7 @@ export default function UpdateOwnerInfo() {
                 phone: data.phone,
                 gymname: data.gymname
             });
-            console.log(updateOwner);
+            // console.log(updateOwner);
         } catch (error) {
             console.log(error);
             navigate("/");

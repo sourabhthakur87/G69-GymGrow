@@ -32,7 +32,7 @@ export default function MemberHomeAttendance() {
 
             setmemberHomeData({ allData: data, attendance: data.attendance })
 
-            console.log(data.feeHistory);
+            // console.log(data.feeHistory);
 
         } catch (error) {
             console.log(error);

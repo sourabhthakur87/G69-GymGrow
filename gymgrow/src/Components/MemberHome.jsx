@@ -34,7 +34,7 @@ export default function MemberHome() {
 
       setmemberHomeData({ allData: data, gymdetail: data.gymDetails[0], feehistory: data.feeHistory })
 
-      console.log(data.feeHistory);
+      // console.log(data.feeHistory);
 
     } catch (error) {
       console.log(error);
@@ -148,7 +148,6 @@ export default function MemberHome() {
 
                     const q = new Date();
                     let Remaining;
-                    let arr = [];
                     if (q.getTime() > registeration.getTime()) {
                       const diff = feeDuration.getTime() - q.getTime();
                       const one_day = 1000 * 3600 * 24;

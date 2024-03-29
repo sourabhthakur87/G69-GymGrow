@@ -19,7 +19,7 @@ export default function Signin() {
     e.preventDefault();
     var name = e.target.name;
     var value = e.target.value;
-    console.log(value);
+    // console.log(value);
     setOwnerLogin({ ...ownerLogin, [name]: value });
   }
 
