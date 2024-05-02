@@ -224,7 +224,7 @@ export default function AddMember() {
                             </div>
                         </div>
                         <br />
-                        <textarea name="dite" cols="100" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
+                        <textarea name="dite" cols="100" rows="5" placeholder='Add Diet' onChange={handleMember}></textarea>
                         <br />
                         <button onClick={postMember}>Add Member</button>
                     </form>

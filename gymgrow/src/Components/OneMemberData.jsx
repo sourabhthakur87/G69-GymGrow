@@ -279,7 +279,7 @@ export default function OneMemberData() {
                         <h2><Icon.PersonCheck className='inputIcon'/>{oneData.name}</h2>
                         <h2><Icon.PhoneFill className='inputIcon'/> {oneData.phone}, <Icon.HouseAddFill className='inputIcon'/> {oneData.address}</h2>
                         <div className="dite">
-                            <h2>Dite:- {oneData.dite}</h2>
+                            <h2>Diet:- {oneData.dite}</h2>
                         </div>
                     </div>
 
@@ -304,7 +304,7 @@ export default function OneMemberData() {
                                 </div>
                             </div>
                             <div className="lable">
-                                <label htmlFor="">Dite</label>
+                                <label htmlFor="">Diet</label>
                                 <textarea name="dite" cols="32" rows="3" value={oneData.dite} onChange={mamberdetailUpdate} ></textarea>
                             </div>
                             <button onClick={patchMemberUpdate}>Update</button>

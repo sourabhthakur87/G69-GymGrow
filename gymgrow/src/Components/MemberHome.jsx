@@ -85,7 +85,7 @@ export default function MemberHome() {
                 </div>
               </div>
               <hr />
-              <p>Dite : {memberHomeData.allData.dite}</p>
+              <p>Diet : {memberHomeData.allData.dite}</p>
             </div>
             <hr style={{ margin: "10px 0px" }} />
             <div className="gym-info">
