@@ -158,6 +158,10 @@ export default function MemberHome() {
                       const one_day = 1000 * 3600 * 24;
                       Remaining = Math.ceil(diff / one_day)
                     }
+
+                    {/* if (index === memberHomeData.feehistory.length - 1 && Remaining < 5) {
+                      alert("Your fee is overdue. Please pay immediately to avoid any disruptions.");
+                    } */}
                     return (
                       <>
                         <tbody>
@@ -175,8 +179,6 @@ export default function MemberHome() {
                 }
               </table>
             </div>
-
-
           </div>
         </div>
       </div>
