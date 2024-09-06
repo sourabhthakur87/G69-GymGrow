@@ -228,7 +228,7 @@ export default function MemberDetails() {
                 onLoaderFinished={() => setProgress(0)}
             />
 
-            <NavBar2 gymname={gymname.gymname}/>
+            <NavBar2 gymname={gymname.gymname} />
 
             {/* {showModel && <MyModel />} */}
             <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
@@ -279,8 +279,8 @@ export default function MemberDetails() {
                     </div>
                 </div>
             </div>
-            
-            <div className="memberDetails" style={{marginBottom:"15px"}}> 
+
+            <div className="memberDetails" style={{ marginBottom: "15px" }}>
                 <div className="search">
                     <select value={showUpcoming} onChange={(e) => setShowUpcoming(e.target.value === 'true')}>
                         <option value={false}>All Payments</option>
@@ -303,7 +303,7 @@ export default function MemberDetails() {
 
                     <p>Total {membernumber}/{memberDetails.length}</p>
                 </div>
-                
+
                 <div className="table">
                     <table>
                         <thead>

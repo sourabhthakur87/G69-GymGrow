@@ -159,9 +159,9 @@ export default function MemberHome() {
                       Remaining = Math.ceil(diff / one_day)
                     }
 
-                    {/* if (index === memberHomeData.feehistory.length - 1 && Remaining < 5) {
+                    if (index === memberHomeData.feehistory.length - 1 && Remaining < 5) {
                       alert("Your fee is overdue. Please pay immediately to avoid any disruptions.");
-                    } */}
+                    }
                     return (
                       <>
                         <tbody>

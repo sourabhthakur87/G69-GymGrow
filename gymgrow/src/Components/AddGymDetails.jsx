@@ -7,7 +7,7 @@ import "../CSS/addgymdetail.css"
 export default function AddGymDetails() {
     const navigate = useNavigate();
     const [gymdetails, setgymDetails] = useState({
-        mmorningOpening: "", morningClosing: "", eveningOpening: "", eveningClosing: "", gymAddress: "", descreption: ""
+        morningOpening: "", morningClosing: "", eveningOpening: "", eveningClosing: "", gymAddress: "", descreption: ""
     })
 
     document.title = "Add Gym Details"
